@@ -24,7 +24,7 @@ public class CourseManagement {
 			capacities.put(c, 20); // just for testing
 			actualEnrollment.put(c, 0);
 			list.put(c, RawCourseList.mapCourseEntries.get(c));
-			classStudentLists.put(c, new HashSet<>());
+			classStudentLists.put(c, new TreeSet<>(Comparator.comparing(Student::getbNumber)));
 			key2CourseMap.put(c.getCrnSemCombo(), c);
 		}
 	}

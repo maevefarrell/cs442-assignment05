@@ -58,7 +58,6 @@ public class RawCourseList {
 			new Instructor("Shim", "Bonggu"),
 			new Instructor("Danberg", "Robert P"),
 			new Instructor("Mann", "Joelle"),
-			null					
 	};
 
 	static Map<Course, Instructor> mapCourseEntries = Map.ofEntries(
