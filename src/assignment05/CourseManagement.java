@@ -49,11 +49,14 @@ public class CourseManagement {
 	}
 	
 	public static boolean dropEnrollment(String courseKey) {
-		TODO
-		// return true if c = crs.get() exists and
-		// the actualEnrollment.get(c) > 0 and you
-		// decrease it by 1
-		// return false in all other cases
-		return false;
+		// TODO: Done by Abby
+		if(actualEnrollment.get(courseKey) > 0) {
+			// Decrement
+			actualEnrollment.put(key2CourseMap.get(courseKey), actualEnrollment.get(courseKey) -1);
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 }

@@ -8,7 +8,7 @@ public class Student implements CourseUser {
 	private String lastNames;
 	private String firstNames;
 	private List<Enrollment> enrollments = new ArrayList<>(); 
-	
+
 	public Student(String bNumberIn, String lastNamesIn, String firstNamesIn) {
 		bNumber = bNumberIn;
 		lastNames = lastNamesIn;
@@ -56,9 +56,18 @@ public class Student implements CourseUser {
 		return returnValue.toArray(new String[] {});
 	}
 	public boolean dropRegistration(String key) {
-		TODO
+		//@TODO by Abby
+		// Find course using enrollments list
+		for(Enrollment e: enrollments) {
+			if(e.getCourse().getCrnSemCombo() == key && CourseManagement.dropEnrollment(key)){
+				enrollments.remove(e);
+				return true;
+
+			}
+		}
 		return false;
 	}
+
 	public String toString() {
 		return firstNames + " " + lastNames + " (" + bNumber + "): " + enrollments;
 	}

@@ -19,9 +19,9 @@ public class Instructor implements CourseUser {
 
 	public void populateCoursesTaught() {
 		for(Course c : CourseManagement.list.keySet()) {
-			//TODO
-		}
-		// Go through the keys of CourseManagement.list using the
+			//TODO: Done by Abby - i don't understand the mapping for "this
+		
+			// Go through the keys of CourseManagement.list using the
 		// keySet() method. If the course c is a key for "this"
 		// Instructor put in coursesToTeach the mapping from c
 		// to the Set in CourseManagement.classStudentLists for c
@@ -34,6 +34,12 @@ public class Instructor implements CourseUser {
 			// See how proxy is made for StudentInvocationHandler in Test
 			// create CourseUser proxy as InstructorInvocationHandler
 			// from this Instructor
+			// @TODO: Amelia I cannot figure out how to make the invocation correctly
+			CourseUser proxy = (CourseUser)Proxy.newProxyInstance(
+					     course.getClass().getClassLoader(),
+					     course.getClass().getInterfaces(),
+					     new InstructorInvocationHandler());
+					   crnSemCombo.clear();
 
 			CourseUser proxy = new InstructorInvocationHandler(this);
 			for(Student s : coursesToTeach.get(course)) {
