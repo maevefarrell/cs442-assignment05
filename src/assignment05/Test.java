@@ -22,7 +22,7 @@ public class Test {
   System.out.println("\nEnroll students in classes -----------------");
   enrollInclasses();
   System.out.println("\nPut grades in for one instructor -----------------");
-  tryGrading();
+  tryGrading1();
   System.out.println("\nDone -----------------");
   printGPAs();
  }

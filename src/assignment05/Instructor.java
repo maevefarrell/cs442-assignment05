@@ -28,7 +28,7 @@ public class Instructor implements CourseUser {
 		// keySet() method. If the course c is a key for "this"
 		// Instructor put in coursesToTeach the mapping from c
 		// to the Set in CourseManagement.classStudentLists for c
-			if(c.equals(this)) {
+			if(CourseManagement.list.get(c).equals(this)) {
 				coursesToTeach.put(c, CourseManagement.classStudentLists.get(c));
 			}
 			
@@ -44,16 +44,20 @@ public class Instructor implements CourseUser {
 			// create CourseUser proxy as InstructorInvocationHandler
 			// from this Instructor
 			// @TODO: Amelia I cannot figure out how to make the invocation correctly
+			/*
 			CourseUser proxy = (CourseUser)Proxy.newProxyInstance(
 					     course.getClass().getClassLoader(),
 					     course.getClass().getInterfaces(),
 					     new InstructorInvocationHandler(this));
+					     */
+			//The above line causes com.sun.proxy.$Proxy1 cannot be cast to cs442/assignment05.CourseUse
 			//CourseUser proxy = new InstructorInvocationHandler(this);
 			for(Student s : coursesToTeach.get(course)) {
 				// TODO LATER
 				// replace with assigning a random grades to the student
 				
-				proxy.setGrade(s, courseKey, letters[ranGen.nextInt(letters.length)]);
+				setGrade(s, courseKey, letters[ranGen.nextInt(letters.length)]);
+				//proxy.setGrade(s, courseKey, letters[ranGen.nextInt(letters.length)]);
 				/*boolean formatCorrect = false;
 				while(!formatCorrect) {
 					System.out.println(s.getbNumber() + ": " + s.getLastNames() + ", " + s.getFirstNames() + ". Grade: ");
