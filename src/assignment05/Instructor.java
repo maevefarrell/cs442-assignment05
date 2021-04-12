@@ -1,6 +1,7 @@
 package assignment05;
 
 import java.lang.reflect.Proxy;
+import java.util.Random;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -10,6 +11,8 @@ public class Instructor implements CourseUser {
 	private String lastNames;
 	private String firstNames;
 	private Map<Course, Set<Student>> coursesToTeach = new HashMap<>();
+	private static Random ranGen = new Random(15);
+	private static String[] letters = {"A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D", "F"};
 
 	public Instructor(String lNames, String fNames) {
 		lastNames = lNames;
@@ -25,6 +28,12 @@ public class Instructor implements CourseUser {
 		// keySet() method. If the course c is a key for "this"
 		// Instructor put in coursesToTeach the mapping from c
 		// to the Set in CourseManagement.classStudentLists for c
+			if(c.equals(this)) {
+				coursesToTeach.put(c, CourseManagement.classStudentLists.get(c));
+			}
+			
+		
+		}
 	}
 
 	public void putGrades() {
@@ -38,14 +47,14 @@ public class Instructor implements CourseUser {
 			CourseUser proxy = (CourseUser)Proxy.newProxyInstance(
 					     course.getClass().getClassLoader(),
 					     course.getClass().getInterfaces(),
-					     new InstructorInvocationHandler());
-					   crnSemCombo.clear();
-
-			CourseUser proxy = new InstructorInvocationHandler(this);
+					     new InstructorInvocationHandler(this));
+			//CourseUser proxy = new InstructorInvocationHandler(this);
 			for(Student s : coursesToTeach.get(course)) {
 				// TODO LATER
 				// replace with assigning a random grades to the student
-				boolean formatCorrect = false;
+				
+				proxy.setGrade(s, courseKey, letters[ranGen.nextInt(letters.length)]);
+				/*boolean formatCorrect = false;
 				while(!formatCorrect) {
 					System.out.println(s.getbNumber() + ": " + s.getLastNames() + ", " + s.getFirstNames() + ". Grade: ");
 					String grade = kbd.nextLine();
@@ -56,7 +65,7 @@ public class Instructor implements CourseUser {
 					} else {
 						System.out.println(grade + "is not a valid grade, please re-enter");
 					}
-				}
+				}*/
 			}
 		}
 	}

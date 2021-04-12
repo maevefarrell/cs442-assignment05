@@ -10,7 +10,7 @@ import java.util.TreeSet;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class NamesResource {
-	private static Random ranGen = new Random(); // put in a number for repeatable sequences 
+	private static Random ranGen = new Random(15); // put in a number for repeatable sequences 
 	private static ThreadLocalRandom threadGen = ThreadLocalRandom.current();
 	public static String getRandomLastName() {
 		return lastNames[ranGen.nextInt(lastNames.length)];
